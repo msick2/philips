@@ -1,0 +1,55 @@
+#define SUBSCRIPT_CAPITAL_E_CHAR 0xE145/* SUBSCRIPT CAPITAL E */
+#define SUBSCRIPT_CAPITAL_L_CHAR 0xE14C/* SUBSCRIPT CAPITAL L */
+#define LITER_PER_CHAR 0xE400/* LITER PER - used in 4 char unit "l/min" */
+#define HYDROGEN_CHAR 0xE401/* HYDROGEN - Used in 4 char unit "cmH2O" */
+#define ALARM_STAR_CHAR 0xE40D/* ALARM STAR */
+#define CAPITAL_V_WITH_DOT_ABOVE_CHAR 0xE425/* CAPITAL_V_WITH_DOT_ABOVE (V with dot) */
+#define ZERO_WIDTH_NO_BREAK_SPACE_CHAR 0xFEFF/* The character 0xFEFF is used as FILL character.For each wide asian character, a FILL character isappended for size calculations. */
+#define ROIV_APDU 1
+#define RORS_APDU 2
+#define ROER_APDU 3
+#define ROLRS_APDU 5
+#define RORLS_FIRST 1 /* set in the first message */
+#define RORLS_NOT_FIRST_NOT_LAST 2
+#define RORLS_LAST 3 /* last RORLSapdu, one RORSapdu to follow */
+#define CMD_EVENT_REPORT 0
+#define CMD_CONFIRMED_EVENT_REPORT 1
+#define CMD_GET 3
+#define CMD_SET 4
+#define CMD_CONFIRMED_SET 5
+#define CMD_CONFIRMED_ACTION 7
+#define NO_SUCH_OBJECT_CLASS 0
+#define NO_SUCH_OBJECT_INSTANCE 1
+#define ACCESS_DENIED 2
+#define GET_LIST_ERROR 7
+#define SET_LIST_ERROR 8
+#define NO_SUCH_ACTION 9
+#define PROCESSING_FAILURE 10
+#define INVALID_ARGUMENT_VALUE 15
+#define INVALID_SCOPE 16
+#define INVALID_OBJECT_INSTANCE 17
+#define NOM_NOTI_MDS_CREAT 3334 /* MDS Create Notification */
+#define NOM_NOTI_CONN_INDIC 3351/* connect indication event type */
+#define NOM_ACT_POLL_MDIB_DATA 3094/* poll data action */
+#define NOM_ACT_POLL_MDIB_DATA_EXT 61755/* extended poll data action */
+#define NOM_POLL_PROFILE_SUPPORT 1/* id for polling profile */
+#define NOM_MDIB_OBJ_SUPPORT 258/* supported objects for the active profile */
+#define NOM_ATTR_POLL_PROFILE_EXT 61441/* id for poll profile extensions opt. package */
+#define MDDL_VERSION1 0x80000000/* Data Export Protocol Version */
+#define NOMEN_VERSION 0x40000000/* Nomenclature Version */
+#define SYST_CLIENT 0x80000000/* System Type Client */
+#define SYST_SERVER 0x00800000/* System Type Server */
+#define HOT_START 0x80000000/* Startup Mode Hotstart */
+#define WARM_START 0x40000000/* Startup Mode Warmstart */
+#define COLD_START 0x20000000/* Startup Mode Coldstart */
+#define POLL_PROFILE_REV_0 0x80000000/* Poll Profile Revision */
+#define P_OPT_DYN_CREATE_OBJECTS 0x40000000/* option dynamic object creation */
+#define P_OPT_DYN_DELETE_OBJECTS 0x20000000/* option dynamic object deletion */
+#define POLL_EXT_PERIOD_NU_1SEC 0x80000000/* 1 sec Real-time Numerics */
+#define POLL_EXT_PERIOD_NU_AVG_12SEC 0x40000000/* 12 sec averaged Numerics */
+#define POLL_EXT_PERIOD_NU_AVG_60SEC 0x20000000/* 1 min. averaged Numerics */
+#define POLL_EXT_PERIOD_NU_AVG_300SEC 0x10000000/* 5 min. averaged Numerics */
+#define POLL_EXT_PERIOD_RTSA 0x08000000/* allow enumeration objects */
+#define POLL_EXT_ENUM 0x04000000/* allow numeric priority list to be set */
+#define POLL_EXT_NU_PRIO_LIST 0x02000000/* send timestamps for numerics with dynamic modalities */
+#define POLL_EXT_DYN_MODALITIES 0x01000000

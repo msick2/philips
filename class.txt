@@ -1,0 +1,60 @@
+------------------------------------------------------------------------------------------------------------------------
+    MDSCreateEventResult ::=
+        <SPpdu>
+        <ROapdus>
+            ro_type := RORS_APDU
+        <RORSapdu>
+            invoke_id := "mirrored from event report"
+            command_type := CMD_CONFIRMED_EVENT_REPORT 1
+        <EventReportResult>
+            managed_object := mirrored from event report
+            event_type := NOM_NOTI_MDS_CREAT
+            length := 0
+------------------------------------------------------------------------------------------------------------------------
+    MDSPollActionResult ::=
+        <SPpdu>
+        <ROapdus>
+            ro_type := RORS_APDU
+        <RORSapdu>
+            invoke_id := "mirrored from request message"
+            command_type := CMD_CONFIRMED_ACTION 7
+        <ActionResult>
+            managed_object := {NOM_MOC_VMS_MDS, 0, 0},
+            action_type := NOM_ACT_POLL_MDIB_DATA
+        <PollMdibDataReply>
+------------------------------------------------------------------------------------------------------------------------
+    MDSPollActionResultExt ::=
+        <SPpdu>
+        <ROapdus>
+            ro_type := RORS_APDU
+        <RORSapdu>
+            invoke_id := "mirrored from request message"
+            command_type := CMD_CONFIRMED_ACTION 7
+        <ActionResult>
+            managed_object := {NOM_MOC_VMS_MDS, 0, 0},
+            action_type := NOM_ACT_POLL_MDIB_DATA_EXT
+        <PollMdibDataReplyExt>
+------------------------------------------------------------------------------------------------------------------------
+    MDSGetPriorityListResult ::=
+        <SPpdu>
+        <ROapdus>
+            ro_type := RORS_APDU
+        <RORSapdu>
+            invoke_id := “mirrored from request message”,
+            command_type := CMD_GET 3
+        <GetResult>
+            managed_object := {NOM_MOC_VMS_MDS, 0, 0}
+------------------------------------------------------------------------------------------------------------------------
+    MDSSetPriorityListResult ::=
+        <SPpdu>
+        <ROapdus>
+            ro_type := RORS_APDU
+        <RORSapdu>
+            invoke_id := “mirrored from request message”,
+            command_type := CMD_CONFIRMED_SET 5
+        <SetResult>
+            managed_object := {NOM_MOC_VMS_MDS, 0, 0}
+------------------------------------------------------------------------------------------------------------------------
+
+
+

@@ -1,0 +1,27 @@
+{
+  "FrameHdr": {
+    "protocol_id": 17,
+    "msg_type": 1,
+    "length": 44
+  },
+  "SPpdu": {
+    "session_id": 57600,
+    "p_context_id": 2
+  },
+  "ROapdus": {
+    "ro_type": 2,
+    "length": 36
+  },
+  "RORSapdu": {
+    "invoke_id": 242,
+    "command_type": 5,
+    "length": 30
+  },
+  "SetResult": {
+    "m_obj_class": 33,
+    "context_id": 0,
+    "handle": 0,
+    "count": 1,
+    "length": 20
+  }
+}

@@ -1,0 +1,616 @@
+ECG Unspecific ECG wave
+Label:
+NLS_NOM_ECG_ELEC_POTL 0x00020100
+Observed Value:
+NOM_ECG_ELEC_POTL 0x0100
+Units:
+NOM_DIM_MILLI_VOLT
+I ECG Lead I
+Label:
+NLS_NOM_ECG_ELEC_POTL_I 0x00020101
+Observed Value:
+NOM_ECG_ELEC_POTL_I 0x0101
+Units:
+NOM_DIM_MILLI_VOLT
+II ECG Lead II
+Label:
+NLS_NOM_ECG_ELEC_POTL_II 0x00020102
+Observed Value:
+NOM_ECG_ELEC_POTL_II 0x0102
+Units:
+NOM_DIM_MILLI_VOLT
+III ECG Lead III
+Label:
+NLS_NOM_ECG_ELEC_POTL_III 0x0002013D
+Observed Value:
+NOM_ECG_ELEC_POTL_III 0x013D
+Units:
+NOM_DIM_MILLI_VOLT
+aVR ECG Lead AVR
+Label:
+NLS_NOM_ECG_ELEC_POTL_AVR 0x0002013E
+Observed Value:
+NOM_ECG_ELEC_POTL_AVR 0x013E
+Units:
+NOM_DIM_MILLI_VOLT
+aVL ECG Lead AVL
+Label:
+NLS_NOM_ECG_ELEC_POTL_AVL 0x0002013F
+Observed Value:
+NOM_ECG_ELEC_POTL_AVL 0x013F
+Units:
+NOM_DIM_MILLI_VOLT
+aVF ECG Lead AVF
+Label:
+NLS_NOM_ECG_ELEC_POTL_AVF 0x00020140
+Observed Value:
+NOM_ECG_ELEC_POTL_AVF 0x0140
+Units:
+NOM_DIM_MILLI_VOLT
+V ECG Lead V
+Label:
+NLS_NOM_ECG_ELEC_POTL_V 0x00020143
+Observed Value:
+NOM_ECG_ELEC_POTL_V 0x0143
+NOM_ECG_RHY_UNANALYZEABLE Cannot Analyze ECG 0x4011
+NOM_ECG_RHY_ABSENT 0x400B
+NOM_ECG_RHY_NOS 0x403F
+NOM_ECG_RHY ECG Rhythm 0x400A
+Nomen Description Value
+Physiological Identifier 7 Attribute Data Types and Constants Used
+193
+Units:
+NOM_DIM_MILLI_VOLT
+MCL ECG Lead MCL
+Label:
+NLS_NOM_ECG_ELEC_POTL_MCL 0x0002014B
+Observed Value:
+NOM_ECG_ELEC_POTL_MCL 0x014B
+Units:
+NOM_DIM_MILLI_VOLT
+V1 ECG Lead V1
+Label:
+NLS_NOM_ECG_ELEC_POTL_V1 0x00020103
+Observed Value:
+NOM_ECG_ELEC_POTL_V1 0x0103
+Units:
+NOM_DIM_MILLI_VOLT
+V2 ECG Lead V1
+Label:
+NLS_NOM_ECG_ELEC_POTL_V2 0x00020104
+Observed Value:
+NOM_ECG_ELEC_POTL_V2 0x0104
+Units:
+NOM_DIM_MILLI_VOLT
+V3 ECG Lead V1
+Label:
+NLS_NOM_ECG_ELEC_POTL_V3 0x00020105
+Observed Value:
+NOM_ECG_ELEC_POTL_V3 0x0105
+Units:
+NOM_DIM_MILLI_VOLT
+V4 ECG Lead V1
+Label:
+NLS_NOM_ECG_ELEC_POTL_V4 0x00020106
+Observed Value:
+NOM_ECG_ELEC_POTL_V4 0x0106
+Units:
+NOM_DIM_MILLI_VOLT
+V5 ECG Lead V1
+Label:
+NLS_NOM_ECG_ELEC_POTL_V5 0x00020107
+Observed Value:
+NOM_ECG_ELEC_POTL_V5 0x0107
+Units:
+NOM_DIM_MILLI_VOLT
+V6 ECG Lead V1
+Label:
+NLS_NOM_ECG_ELEC_POTL_V6 0x00020108
+Observed Value:
+NOM_ECG_ELEC_POTL_V6 0x0108
+Units:
+NOM_DIM_MILLI_VOLT
+MCL1 ECG Lead MCL1
+Label:
+NLS_NOM_ECG_ELEC_POTL_MCL1 0x0002014C
+Observed Value:
+NOM_ECG_ELEC_POTL_MCL1 0x014C
+Units:
+NOM_DIM_MILLI_VOLT
+Pleth PLETH wave label
+Label:
+NLS_NOM_PULS_OXIM_PLETH 0x00024BB4
+Observed Value:
+NOM_PLETH 0x4BB4
+Units:
+NOM_DIM_DIMLESS
+7 Attribute Data Types and Constants Used Physiological Identifier
+194
+PLTHpr PLETH wave (pre ductal)
+Label:
+NLS_NOM_PULS_OXIM_PLETH_PRE_DUCTAL 0x0002F1BC
+Observed Value:
+NOM_PULS_OXIM_PLETH_PRE_DUCTAL 0xF1BC
+Units:
+NOM_DIM_DIMLESS
+PLTHpo PLETH wave (post ductal)
+Label:
+NLS_NOM_PULS_OXIM_PLETH_POST_DUCTAL 0x0002F1D0
+Observed Value:
+NOM_PULS_OXIM_PLETH_POST_DUCTAL 0xF1D0
+Units:
+NOM_DIM_DIMLESS
+PlethT Pleth wave from Telemetry
+Label:
+NLS_NOM_PULS_OXIM_PLETH_TELE 0x0002F09B
+Observed Value:
+NOM_PULS_OXIM_PLETH_TELE 0xF09B
+Units:
+NOM_DIM_DIMLESS
+PLETHr PLETH wave (right)
+Label:
+NLS_NOM_PULS_OXIM_PLETH_RIGHT 0x0002F08C
+Observed Value:
+NOM_PULS_OXIM_PLETH_RIGHT 0xF08C
+Units:
+NOM_DIM_DIMLESS
+PLETHl PLETH wave (left)
+Label:
+NLS_NOM_PULS_OXIM_PLETH_LEFT 0x0002F08D
+Observed Value:
+NOM_PULS_OXIM_PLETH_LEFT 0xF08D
+Units:
+NOM_DIM_DIMLESS
+ABP Arterial Blood Pressure (ABP)
+Label:
+NLS_NOM_PRESS_BLD_ART_ABP 0x00024A14
+Observed Value:
+NOM_PRESS_BLD_ART_ABP 0x4A14
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+ART Arterial Blood Pressure (ART)
+Label:
+NLS_NOM_PRESS_BLD_ART 0x00024A10
+Observed Value:
+NOM_PRESS_BLD_ART 0x4A10
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+Ao Arterial Blood Pressure in the Aorta (Ao)
+Label:
+NLS_NOM_PRESS_BLD_AORT 0x00024A0C
+Observed Value:
+NOM_PRESS_BLD_AORT 0x4A0C
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+PAP Pulmonary Arterial Pressure (PAP)
+Label:
+NLS_NOM_PRESS_BLD_ART_PULM 0x00024A1C
+Observed Value:
+NOM_PRESS_BLD_ART_PULM 0x4A1C
+Units:
+Physiological Identifier 7 Attribute Data Types and Constants Used
+195
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+CVP Central Venous Pressure (CVP)
+Label:
+NLS_NOM_PRESS_BLD_VEN_CENT 0x00024A44
+Observed Value:
+NOM_PRESS_BLD_VEN_CENT 0x4A44
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+RAP Right Atrial Pressure (RAP)
+Label:
+NLS_NOM_PRESS_BLD_ATR_RIGHT 0x00024A34
+Observed Value:
+NOM_PRESS_BLD_ATR_RIGHT 0x4A34
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+LAP Left Atrial Pressure (LAP)
+Label:
+NLS_NOM_PRESS_BLD_ATR_LEFT 0x00024A30
+Observed Value:
+NOM_PRESS_BLD_ATR_LEFT 0x4A30
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+ICP Intra-cranial Pressure (ICP)
+Label:
+NLS_NOM_PRESS_INTRA_CRAN 0x00025808
+Observed Value:
+NOM_PRESS_INTRA_CRAN 0x5808
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+UAP Umbilical Arterial Pressure (UAP)
+Label:
+NLS_NOM_PRESS_BLD_ART_UMB 0x00024A28
+Observed Value:
+NOM_PRESS_BLD_ART_UMB 0x4A28
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+UVP Umbilical Venous Pressure (UVP)
+Label:
+NLS_NOM_PRESS_BLD_VEN_UMB 0x00024A48
+Observed Value:
+NOM_PRESS_BLD_VEN_UMB 0x4A48
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+FAP Femoral Arterial Pressure (FAP)
+Label:
+NLS_NOM_PRESS_BLD_ART_FEMORAL 0x0002F0BC
+Observed Value:
+NOM_PRESS_BLD_ART_FEMORAL 0xF0BC
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+BAP Brachial Arterial Pressure (BAP)
+Label:
+NLS_NOM_PRESS_BLD_ART_BRACHIAL 0x0002F0C0
+Observed Value:
+NOM_PRESS_BLD_ART_BRACHIAL 0xF0C0
+Units:
+NOM_DIM_MMHG 0x0F20
+7 Attribute Data Types and Constants Used Physiological Identifier
+196
+NOM_DIM_KILO_PASCAL
+IC1 Intracranial Pressure 1 (IC1)
+Label:
+NLS_NOM_PRESS_INTRA_CRAN_1 0x0002F0B4
+Observed Value:
+NOM_PRESS_INTRA_CRAN_1 0xF0B4
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+IC2 Intracranial Pressure 2 (IC2)
+Label:
+NLS_NOM_PRESS_INTRA_CRAN_2 0x0002F0B8
+Observed Value:
+NOM_PRESS_INTRA_CRAN_2 0xF0B8
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P unspecific pressure
+Label:
+NLS_NOM_PRESS_BLD 0x00024A00
+Observed Value:
+NOM_PRESS_BLD 0x4A00
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P1 Generic Pressure 1 (P1)
+Label:
+NLS_NOM_PRESS_GEN_1 0x0002F0A4
+Observed Value:
+NOM_PRESS_GEN_1 0xF0A4
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P2 Generic Pressure 2 (P2)
+Label:
+NLS_NOM_PRESS_GEN_2 0x0002F0A8
+Observed Value:
+NOM_PRESS_GEN_2 0xF0A8
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P3 Generic Pressure 3 (P3)
+Label:
+NLS_NOM_PRESS_GEN_3 0x0002F0AC
+Observed Value:
+NOM_PRESS_GEN_3 0xF0AC
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P4 Generic Pressure 4 (P4)
+Label:
+NLS_NOM_PRESS_GEN_4 0x0002F0B0
+Observed Value:
+NOM_PRESS_GEN_4 0xF0B0
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+CO2 CO2 concentration
+Label:
+NLS_NOM_AWAY_CO2 0x000250AC
+Observed Value:
+NOM_AWAY_CO2 0x50AC
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+Physiological Identifier 7 Attribute Data Types and Constants Used
+197
+acResp Accoustic Respiration Rate
+Label:
+NLS_NOM_ACOUSTIC_RESP 0x0002FB5E
+Observed Value:
+NOM_ACOUSTIC_RESP_RATE 0xFB5F
+Units:
+NOM_DIM_RESP_PER_MIN
+O2 Generic oxigen measurement label
+Label:
+NLS_NOM_CONC_AWAY_O2 0x00025164
+Observed Value:
+NOM_CONC_AWAY_O2 0x5164
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+Resp Imedance RESP wave
+Label:
+NLS_NOM_RESP 0x00025000
+Observed Value:
+NOM_RESP 0x5000
+Units:
+NOM_DIM_X_OHM
+AWF Airway Flow Wave
+Label:
+NLS_NOM_FLOW_AWAY 0x000250D4
+Observed Value:
+NOM_FLOW_AWAY 0x50D4
+AWP Airway Pressure Wave
+Label:
+NLS_NOM_PRESS_AWAY 0x000250F0
+Observed Value:
+NOM_PRESS_AWAY 0x50F0
+AWPin Airway Pressure Wave - measured in the inspiratory path
+Label:
+NLS_NOM_PRESS_AWAY_INSP 0x00025108
+Observed Value:
+NOM_PRESS_AWAY_INSP 0x5108
+AWV Airway Volume Wave
+Label:
+NLS_NOM_VOL_AWAY 0x0002F0DF
+Observed Value:
+NOM_METRIC_NOS 0xEFFF
+AWFin Airway Flow Wave - measured in the inspiratory path
+Label:
+NLS_NOM_VENT_FLOW_INSP 0x0002518C
+Observed Value:
+NOM_VENT_FLOW_INSP 0x518C
+EEG generic EEG and BIS label
+Label:
+NLS_NOM_EEG_ELEC_POTL_CRTX 0x0002592C
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+Units:
+NOM_DIM_MICRO_VOLT
+EEG L Left channel EEG wave
+Label:
+NLS_NOM_EEG_ELEC_POTL_CRTX_LEFT 0x0002F845
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+EEG R Right channel EEG wave
+Label:
+NLS_NOM_EEG_ELEC_POTL_CRTX_RIGHT 0x0002F846
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+EEG1 EEG wave channel 1
+7 Attribute Data Types and Constants Used Physiological Identifier
+198
+Label:
+NLS_EEG_NAMES_EEG_CHAN1_LBL 0x800F5401
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+Units:
+NOM_DIM_MICRO_VOLT
+EEG2 EEG wave channel 2
+Label:
+NLS_EEG_NAMES_EEG_CHAN2_LBL 0x800F5402
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+Units:
+NOM_DIM_MICRO_VOLT
+EEG3 EEG wave channel 3
+Label:
+NLS_EEG_NAMES_EEG_CHAN3_LBL 0x800F5432
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+Units:
+NOM_DIM_MICRO_VOLT
+EEG4 EEG wave channel 4
+Label:
+NLS_EEG_NAMES_EEG_CHAN4_LBL 0x800F5434
+Observed Value:
+NOM_EEG_ELEC_POTL_CRTX 0x592C
+Units:
+NOM_DIM_MICRO_VOLT
+Tblood Tblood
+Label:
+NLS_NOM_TEMP_BLD 0x0002E014
+Observed Value:
+NOM_TEMP_BLD 0xE014
+N2 generic N2 label
+Label:
+NLS_NOM_CONC_AWAY_N2 0x0002537C
+Observed Value:
+NOM_CONC_AWAY_N2 0x537C
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+N2O generic Nitrous Oxide label
+Label:
+NLS_NOM_CONC_AWAY_N2O 0x000251F0
+Observed Value:
+NOM_CONC_AWAY_N2O 0x51F0
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+ISO generic Isoflurane label
+Label:
+NLS_NOM_CONC_AWAY_ISOFL 0x000251E8
+Observed Value:
+NOM_CONC_AWAY_ISOFL 0x51E8
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+SEV generic Sevoflurane label
+Label:
+NLS_NOM_CONC_AWAY_SEVOFL 0x000251E4
+Observed Value:
+NOM_CONC_AWAY_SEVOFL 0x51E4
+Units:
+Physiological Identifier 7 Attribute Data Types and Constants Used
+199
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+ENF generic Enflurane label
+Label:
+NLS_NOM_CONC_AWAY_ENFL 0x000251DC
+Observed Value:
+NOM_CONC_AWAY_ENFL 0x51DC
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+HAL generic Halothane label
+Label:
+NLS_NOM_CONC_AWAY_HALOTH 0x000251E0
+Observed Value:
+NOM_CONC_AWAY_HALOTH 0x51E0
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+DES generic Desflurane label
+Label:
+NLS_NOM_CONC_AWAY_DESFL 0x000251D8
+Observed Value:
+NOM_CONC_AWAY_DESFL 0x51D8
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+AGT generic Agent label
+Label:
+NLS_NOM_CONC_AWAY_AGENT 0x00025388
+Observed Value:
+NOM_CONC_AWAY_AGENT 0x5388
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+AGT1 generic Agent1 label
+Label:
+NLS_GASES_NAMES_CONC_AWAY_AGENT1 0x805A5401
+Observed Value:
+NOM_CONC_AWAY_AGENT 0x5388
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+AGT2 generic Agent2 label
+Label:
+NLS_GASES_NAMES_CONC_AWAY_AGENT2 0x805A5402
+Observed Value:
+NOM_CONC_AWAY_AGENT 0x5388
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL 0x0F03
+NOM_DIM_PERCENT
+P5 Generic Pressure 5 (P5)
+Label:
+NLS_NOM_PRESS_GEN_5 0x0002F3F4
+Observed Value:
+NOM_PRESS_GEN_5 0xF3F4
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+7 Attribute Data Types and Constants Used Physiological Identifier
+200
+P6 Generic Pressure 6 (P6)
+Label:
+NLS_NOM_PRESS_GEN_6 0x0002F3F8
+Observed Value:
+NOM_PRESS_GEN_6 0xF3F8
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P7 Generic Pressure 7 (P7)
+Label:
+NLS_NOM_PRESS_GEN_7 0x0002F3FC
+Observed Value:
+NOM_PRESS_GEN_7 0xF3FC
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+P8 Generic Pressure 8 (P8)
+Label:
+NLS_NOM_PRESS_GEN_8 0x0002F400
+Observed Value:
+NOM_PRESS_GEN_8 0xF400
+Units:
+NOM_DIM_MMHG 0x0F20
+NOM_DIM_KILO_PASCAL
+vECG Vector ECG taken from ICG
+Label:
+NLS_NOM_ELEC_POTL_VECT 0x0002F874
+Observed Value:
+NOM_METRIC_NOS 0xEFFF
+ICG Impedance Cardiography
+Label:
+NLS_NOM_IMPED_TTHOR_ECG 0x0002F888
+Observed Value:
+NOM_METRIC_NOS 0xEFFF
+AWVexp Expiratory Airway Volume Wave. Measured in l.
+Label:
+NLS_NOM_VOL_AWAY_EXP 0x0002F8C1
+Observed Value:
+NOM_METRIC_NOS 0xEFFF
+AGTs Anesthetic Agent - secondary agent
+Label:
+NLS_NOM_CONC_AWAY_AGENT_SEC 0x0002F820
+Observed Value:
+NOM_CONC_AWAY_AGENT 0x5388
+Wave 1 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE1 0x80AAF001
+Observed Value:
+depends on configuration
+Wave 2 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE2 0x80AAF003
+Observed Value:
+depends on configuration
+Wave 3 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE3 0x80AAF005
+Observed Value:
+depends on configuration
+Wave 4 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE4 0x80AAF007
+Observed Value:
+depends on configuration
+Wave 5 Placeholder for Vuelink Flex Text
+Attribute IDs 7 Attribute Data Types and Constants Used
+201
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE5 0x80AAF009
+Observed Value:
+depends on configuration
+Wave 6 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE6 0x80AAF00B
+Observed Value:
+depends on configuration
+Wave 7 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE7 0x80AAF00D
+Observed Value:
+depends on configuration
+Wave 8 Placeholder for Vuelink Flex Text
+Label:
+NLS_VUELINK_FLX1_NPS_TEXT_WAVE8 0x80AAF00F
+Observed Value:
+depends on configuration
