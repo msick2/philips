@@ -2,26 +2,132 @@
   "FrameHdr": {
     "protocol_id": 17,
     "msg_type": 1,
-    "length": 44
+    "length": 282
   },
   "SPpdu": {
     "session_id": 57600,
     "p_context_id": 2
   },
   "ROapdus": {
-    "ro_type": 2,
-    "length": 36
+    "ro_type": 1,
+    "length": 274
   },
-  "RORSapdu": {
-    "invoke_id": 242,
-    "command_type": 5,
-    "length": 30
+  "ROIVapdu": {
+    "invoke_id": 1,
+    "command_type": 1,
+    "length": 268
   },
-  "SetResult": {
+  "EventReportArgument": {
     "m_obj_class": 33,
     "context_id": 0,
     "handle": 0,
-    "count": 1,
-    "length": 20
+    "event_time": 412455168,
+    "event_type": 3334,
+    "length": 254
+  },
+  "MDSCreateInfo": {
+    "m_obj_class": 33,
+    "context_id": 0,
+    "handle": 0,
+    "count": 17,
+    "length": 244,
+    "value_list": [
+      {
+        "attribute_id": 2436,
+        "length": 8,
+        "data": {
+          "length": 6
+        }
+      },
+      {
+        "attribute_id": 2438,
+        "length": 4,
+        "data": {
+          "partition": 1,
+          "code": 4429
+        }
+      },
+      {
+        "attribute_id": 2333,
+        "length": 2,
+        "data": {
+          " InvokeID": 52
+        }
+      },
+      {
+        "attribute_id": 2344,
+        "length": 18,
+        "data": {}
+      },
+      {
+        "attribute_id": 2376,
+        "length": 4,
+        "data": {
+          "NomenclatureVersion": 65536
+        }
+      },
+      {
+        "attribute_id": 2359,
+        "length": 8,
+        "data": {}
+      },
+      {
+        "attribute_id": 2374,
+        "length": 2,
+        "data": {
+          "OperatingMode": 8192
+        }
+      },
+      {
+        "attribute_id": 2317,
+        "length": 2,
+        "data": {}
+      },
+      {
+        "attribute_id": 2357,
+        "length": 2,
+        "data": {}
+      },
+      {
+        "attribute_id": 2434,
+        "length": 2,
+        "data": {}
+      },
+      {
+        "attribute_id": 2316,
+        "length": 2,
+        "data": {}
+      },
+      {
+        "attribute_id": 61946,
+        "length": 20,
+        "data": {}
+      },
+      {
+        "attribute_id": 2471,
+        "length": 2,
+        "data": {}
+      },
+      {
+        "attribute_id": 2334,
+        "length": 36,
+        "data": {}
+      },
+      {
+        "attribute_id": 2439,
+        "length": 8,
+        "data": {}
+      },
+      {
+        "attribute_id": 2447,
+        "length": 4,
+        "data": {}
+      },
+      {
+        "attribute_id": 2437,
+        "length": 52,
+        "data": {}
+      }
+    ]
   }
 }

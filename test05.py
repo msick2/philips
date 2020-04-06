@@ -59,6 +59,79 @@ class Parser:
             ret_dict['ROIVapdu']['command_type'] = data_ROIVapdu['obj'].command_type
             ret_dict['ROIVapdu']['length'] = data_ROIVapdu['obj'].length
 
+            # = 2. CMD_CONFIRMED_EVENT_REPORT =====================================
+            if data_ROIVapdu['obj'].command_type == m700_struct.CMD_CONFIRMED_EVENT_REPORT:
+
+                data_EventReportArgument = self.decoding(m700_struct.EventReportArgument, data_ROIVapdu['tail'])
+                ret_dict['EventReportArgument'] = dict()
+                ret_dict['EventReportArgument']['m_obj_class'] = data_EventReportArgument['obj'].m_obj_class
+                ret_dict['EventReportArgument']['context_id'] = data_EventReportArgument['obj'].context_id
+                ret_dict['EventReportArgument']['handle'] = data_EventReportArgument['obj'].handle
+                ret_dict['EventReportArgument']['event_time'] = data_EventReportArgument['obj'].event_time
+                ret_dict['EventReportArgument']['event_type'] = data_EventReportArgument['obj'].event_type
+                ret_dict['EventReportArgument']['length'] = data_EventReportArgument['obj'].length
+
+                # = 3. NOM_NOTI_MDS_CREAT =====================================
+                if data_EventReportArgument['obj'].event_type == m700_struct.NOM_NOTI_MDS_CREAT:
+                    data_MDSCreateInfo = self.decoding(m700_struct.MdsCreateInfo, data_EventReportArgument['tail'])
+                    ret_dict['MDSCreateInfo'] = dict()
+                    ret_dict['MDSCreateInfo']['m_obj_class'] = data_MDSCreateInfo['obj'].m_obj_class
+                    ret_dict['MDSCreateInfo']['context_id'] = data_MDSCreateInfo['obj'].context_id
+                    ret_dict['MDSCreateInfo']['handle'] = data_MDSCreateInfo['obj'].handle
+                    ret_dict['MDSCreateInfo']['count'] = data_MDSCreateInfo['obj'].count
+                    ret_dict['MDSCreateInfo']['length'] = data_MDSCreateInfo['obj'].length
+                    ret_dict['MDSCreateInfo']['value_list'] = list()
+
+                    tail = data_MDSCreateInfo['tail']
+
+                    for _ in range(data_MDSCreateInfo['obj'].count):
+                        #data_AVAType = self.decoding(m700_struct.AVAType, tail)
+                        #tail = data_AVAType['tail']
+
+                        data_AVAType = self.decoding(m700_struct.AVAType, tail)
+                        tail = data_AVAType['tail']
+                        data = tail[0: data_AVAType['obj'].length]
+
+                        dict_AVAType_append = dict()
+                        dict_AVAType_append['attribute_id'] = data_AVAType['obj'].attribute_id
+                        dict_AVAType_append['length'] = data_AVAType['obj'].length
+                        # dict_AVAType_append['datalength'] = len(data)
+
+                        dict_AVAType_append['data'] = self.decode_attribute \
+                                (
+                                data_AVAType['obj'].attribute_id,
+                                data_AVAType['obj'].length,
+                                data
+                            )
+
+                        tail = tail[data_AVAType['obj'].length:len(tail)]
+
+                        ret_dict['MDSCreateInfo']['value_list'].append(dict_AVAType_append)
+
+
+                    #ret_dict['MDSCreateInfo']['handle'] = data_EventReportArgument['obj'].handle
+
+
+        # = 1. ROLRS_APDU ==========================================================
+        elif data_ROapdus['obj'].ro_type == m700_struct.ROLRS_APDU:
+            data_ROLRSapdu = self.decoding(m700_struct.ROLRSapdu, data_ROapdus['tail'])
+
+            ret_dict['ROLRSapdu'] = dict()
+            ret_dict['ROLRSapdu']['state'] = data_ROLRSapdu['obj'].state
+            ret_dict['ROLRSapdu']['count'] = data_ROLRSapdu['obj'].count
+            ret_dict['ROLRSapdu']['invoke_id'] = data_ROLRSapdu['obj'].invoke_id
+            ret_dict['ROLRSapdu']['command_type'] = data_ROLRSapdu['obj'].command_type
+            ret_dict['ROLRSapdu']['length'] = data_ROLRSapdu['obj'].length
+
+        # = 1. ROLRS_APDU ==========================================================
+        elif data_ROapdus['obj'].ro_type == m700_struct.ROER_APDU:
+            data_ROERapdu = self.decoding(m700_struct.ROERapdu, data_ROapdus['tail'])
+
+            ret_dict['ROERapdu'] = dict()
+            ret_dict['ROERapdu']['state'] = data_ROERapdu['obj'].state
+            ret_dict['ROERapdu']['count'] = data_ROERapdu['obj'].count
+            ret_dict['ROERapdu']['error_value'] = data_ROERapdu['obj'].error_value
+            ret_dict['ROERapdu']['length'] = data_ROERapdu['obj'].length
 
 
         # = 1. RORS_APDU ===========================================================
@@ -249,7 +322,41 @@ class Parser:
                 ret_dict['SetResult']['handle'] = data_SetResult['obj'].handle
                 ret_dict['SetResult']['count'] = data_SetResult['obj'].count
                 ret_dict['SetResult']['length'] = data_SetResult['obj'].length
+                ret_dict['SetResult']['length_tail'] = len(data_RORSapdu['tail'])
+                ret_dict['SetResult']['data_list'] = list()
                 # ret_dict['SetResult']['attributeList'] = data_SetResult['obj'].attributeList
+
+                tail = data_SetResult['tail']
+
+                for _ in range(data_SetResult['obj'].count):
+                    #data_SingleContextPoll = self.decoding(m700_struct.AVAType, tail)
+                    #tail = data_SingleContextPoll['tail']
+
+                    #ret_dict['SetResult'] = dict()
+
+                    data_AVAType = self.decoding(m700_struct.AVAType, tail)
+                    tail = data_AVAType['tail']
+                    data = tail[0: data_AVAType['obj'].length]
+
+                    dict_AVAType_append = dict()
+                    dict_AVAType_append['attribute_id'] = data_AVAType['obj'].attribute_id
+                    dict_AVAType_append['length'] = data_AVAType['obj'].length
+                    # dict_AVAType_append['datalength'] = len(data)
+
+                    dict_AVAType_append['data'] = self.decode_attribute \
+                            (
+                            data_AVAType['obj'].attribute_id,
+                            data_AVAType['obj'].length,
+                            data
+                        )
+
+                    tail = tail[data_AVAType['obj'].length:len(tail)]
+
+                    ret_dict['SetResult']['data_list'].append(dict_AVAType_append)
+
+
+
+
 
         return ret_dict
 
@@ -306,6 +413,48 @@ class Parser:
         elif attribute_id == m700_struct.NOM_ATTR_TIME_STAMP_REL:
             data_obj = self.decoding(m700_struct.RelativeTime, data_array)
             ret_dict['RelativeTime'] = data_obj['obj'].RelativeTime
+
+        elif attribute_id == m700_struct.NOM_ATTR_SYS_ID:
+            data_obj = self.decoding(m700_struct.VariableLabel, data_array)
+            ret_dict['length'] = data_obj['obj'].length
+
+            print(ret_dict['length'])
+            print(data_obj['tail'])
+
+            # 미완성
+            #ret_dict['label'] = bytearray()
+            #index = 0
+            #for _ in range(data_obj['obj'].length):
+            #    ret_dict['label'].append(data_obj['tail'][index])
+            #    index += 1
+
+        elif attribute_id == m700_struct.NOM_ATTR_SYS_TYPE:
+            data_obj = self.decoding(m700_struct.TYPE, data_array)
+            ret_dict['partition'] = data_obj['obj'].partition
+            ret_dict['code'] = data_obj['obj'].code
+
+        elif attribute_id == m700_struct.NOM_ATTR_ID_ASSOC_NO:
+            data_obj = self.decoding(m700_struct.U16, data_array)
+            ret_dict[' InvokeID'] = data_obj['obj'].data
+
+        elif attribute_id == m700_struct.NOM_ATTR_ID_MODEL:
+            data_obj = self.decoding(m700_struct.U16, data_array)
+            #ret_dict[' InvokeID'] = data_obj['obj'].data
+            # SystemModel
+
+        elif attribute_id == m700_struct.NOM_ATTR_NOM_VERS:
+            data_obj = self.decoding(m700_struct.U32, data_array)
+            ret_dict['NomenclatureVersion'] = data_obj['obj'].data
+
+        elif attribute_id == m700_struct.NOM_ATTR_LOCALIZN:
+            data_obj = self.decoding(m700_struct.U32, data_array)
+            #ret_dict['NomenclatureVersion'] = data_obj['obj'].data
+            # SystemLocal
+
+        elif attribute_id == m700_struct.NOM_ATTR_MODE_OP:
+            data_obj = self.decoding(m700_struct.U16, data_array)
+            ret_dict['OperatingMode'] = data_obj['obj'].data
+
 
         return ret_dict
 
@@ -373,7 +522,7 @@ index = 0
 
 file_print = open("file_print.txt", "w")
 
-for data in data_monitor.datas4:
+for data in data_monitor.datas3:
     # for data in data_computer.datas1:
 
     res = rcv_data_restore.input_rcv_data(data)

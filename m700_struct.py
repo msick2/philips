@@ -2886,7 +2886,9 @@ class MdsCreateInfo(BigEndianStructure):
         ("m_obj_class", c_uint16),
         ("context_id", c_uint16),
         ("handle", c_uint16),
-        ("attribute_list", AttributeList),
+        ("count", c_uint16),
+        ("length", c_uint16),
+        # ("value", list(AVAType)),
     ]
 
 
@@ -3357,7 +3359,12 @@ class SaObsValue(BigEndianStructure):
     ]
 
 
-
+class VariableLabel(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("length", c_uint16),
+        #("value", list(c_uint8),
+    ]
 
 
 class DispResolution(BigEndianStructure):
