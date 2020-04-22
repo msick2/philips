@@ -1,0 +1,10 @@
+{
+  "KAFKA_IP": "123.234.123.12",
+  "KAFKA_PORT": "12345",
+  "MON_VALUE": {
+    "EEG1": "X",
+    "EEG2": "O",
+    "EEG3": "X",
+    "EEG4": "X"
+  }
+}

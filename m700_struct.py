@@ -2644,6 +2644,23 @@ NOM_EVT_ADVIS_PASSWORD_CHK = 62186  #
 
 
 
+# define CN_SPDU_SI 0x0D
+# define AC_SPDU_SI 0x0E
+# define RF_SPDU_SI 0x0C
+# define FN_SPDU_SI 0x09
+# define DN_SPDU_SI 0x0A
+# define AB_SPDU_SI 0x19
+
+
+CN_SPDU_SI =  0x0D
+AC_SPDU_SI =  0x0E
+RF_SPDU_SI =  0x0C
+FN_SPDU_SI =  0x09
+DN_SPDU_SI =  0x0A
+AB_SPDU_SI =  0x19
+
+
+
 
 # = Typedef ============================================================================================================
 
@@ -2681,6 +2698,12 @@ NOM_EVT_ADVIS_PASSWORD_CHK = 62186  #
 #        ("ModifyOperator", c_uint16),
 #    ]
 
+
+class I16(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("data", c_int16),
+    ]
 
 class U16(BigEndianStructure):
     _pack_ = 1
@@ -3385,6 +3408,76 @@ class NuObsValueCmp(BigEndianStructure):
 
 
 
+class SystemLocal(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("text_catalog_revision", c_uint32),
+        ("language", c_uint16),
+        ("format", c_uint16),
+    ]
+
+
+
+class MdsGenSystemInfo(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("count", c_uint16),
+        ("length", c_uint16),
+        # ("value", list(MdsGenSystemInfoEntry)),
+    ]
+
+
+
+class SystemSpec(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("count", c_uint16),
+        ("length", c_uint16),
+        # ("value", list(SystemSpecEntry)),
+    ]
+
+class SystemSpecEntry(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("component_capab_id", c_uint16),
+        ("length", c_uint16),
+        # ("value", list(c_uint16)),
+    ]
+
+
+
+'''
+typedef struct {
+u_16 count;
+u_16 length;
+SystemSpecEntry value[1];
+} SystemSpec;
+
+typedef struct {
+PrivateOid component_capab_id;
+u_16 length;
+u_16 value[1];
+} SystemSpecEntry;
+'''
+
+
+"""
+typedef struct
+{
+ u_16 count;
+ u_16 length;
+ MdsGenSystemInfoEntry value[1];
+} MdsGenSystemInfo;
+The MdsGenSysemInfoEntry allows to encode generic system information. It has the following
+structure:
+typedef struct
+{
+ u_16 choice;
+#define MDS_GEN_SYSTEM_INFO_SYSTEM_PULSE_CHOSEN 1
+ u_16 length;
+ u_8 value[
+"""
+
 
 MCAT_UNSPEC = 0
 AUTO_MEASUREMENT = 1
@@ -3571,6 +3664,40 @@ class BaseROERapdu(BigEndianStructure):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
+
+
+
+class AssocReqSessionHeader(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("SessionHead", c_uint8),
+        ("length", c_uint8),
+    ]
+
+
+class AssocReqUserData(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        # define MDDL_VERSION1 0x80000000
+        ("ProtocolVersion", c_uint32),
+
+        # define NOMEN_VERSION 0x40000000;
+        ("NomenclatureVersion", c_uint32),
+
+        ("FunctionalUnits", c_uint32),
+
+        # define SYST_CLIENT 0x80000000
+        # define SYST_SERVER 0x00800000
+        ("SystemType", c_uint32),
+
+        # define HOT_START 0x80000000
+        # define WARM_START 0x40000000
+        # define COLD_START 0x20000000
+        ("StartupMode", c_uint32),
+
+        ("AttributeList1", c_uint8),
+        ("AttributeList2", c_uint8),
+    ]
 
 
 '''

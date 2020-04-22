@@ -366,6 +366,7 @@ class Parser:
         if attribute_id == m700_struct.NOM_ATTR_SA_VAL_OBS:
 
             data_obj = self.decoding(m700_struct.SaObsValue, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_SA_VAL_OBS'
             ret_dict['physio_id'] = data_obj['obj'].physio_id
             ret_dict['state'] = data_obj['obj'].state
             ret_dict['length'] = data_obj['obj'].length
@@ -373,6 +374,7 @@ class Parser:
 
         elif attribute_id == m700_struct.NOM_ATTR_NU_VAL_OBS:
             data_obj = self.decoding(m700_struct.NuObsValue, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_NU_VAL_OBS'
 
             ret_dict['physio_id'] = data_obj['obj'].physio_id
             ret_dict['state'] = data_obj['obj'].state
@@ -381,6 +383,7 @@ class Parser:
 
         elif attribute_id == m700_struct.NOM_ATTR_TIME_STAMP_ABS:
             data_obj = self.decoding(m700_struct.AbsoluteTime, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_TIME_STAMP_ABS'
 
             ret_dict['century'] = data_obj['obj'].century
             ret_dict['year'] = data_obj['obj'].year
@@ -393,6 +396,8 @@ class Parser:
 
         elif attribute_id == m700_struct.NOM_ATTR_NU_CMPD_VAL_OBS:
             data_obj = self.decoding(m700_struct.NuObsValueCmp, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_NU_CMPD_VAL_OBS'
+
             ret_dict['count'] = data_obj['obj'].count
             ret_dict['length'] = data_obj['obj'].length
             ret_dict['data_list'] = list()
@@ -412,49 +417,204 @@ class Parser:
 
         elif attribute_id == m700_struct.NOM_ATTR_TIME_STAMP_REL:
             data_obj = self.decoding(m700_struct.RelativeTime, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_TIME_STAMP_REL'
+
             ret_dict['RelativeTime'] = data_obj['obj'].RelativeTime
 
         elif attribute_id == m700_struct.NOM_ATTR_SYS_ID:
             data_obj = self.decoding(m700_struct.VariableLabel, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_SYS_ID'
             ret_dict['length'] = data_obj['obj'].length
 
-            print(ret_dict['length'])
-            print(data_obj['tail'])
+            length = data_obj['obj'].length
+            data = data_obj['tail'][0: length]
 
-            # 미완성
-            #ret_dict['label'] = bytearray()
-            #index = 0
-            #for _ in range(data_obj['obj'].length):
-            #    ret_dict['label'].append(data_obj['tail'][index])
-            #    index += 1
+            ret_dict['SystemID'] = f'{data[0]}.{data[1]}.{data[2]}.{data[3]}.{data[4]}.{data[5]}'
+
 
         elif attribute_id == m700_struct.NOM_ATTR_SYS_TYPE:
             data_obj = self.decoding(m700_struct.TYPE, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_SYS_TYPE'
+
             ret_dict['partition'] = data_obj['obj'].partition
             ret_dict['code'] = data_obj['obj'].code
 
         elif attribute_id == m700_struct.NOM_ATTR_ID_ASSOC_NO:
             data_obj = self.decoding(m700_struct.U16, data_array)
-            ret_dict[' InvokeID'] = data_obj['obj'].data
+            ret_dict['Attribute'] = 'NOM_ATTR_ID_ASSOC_NO'
+
+            ret_dict['InvokeID'] = data_obj['obj'].data
 
         elif attribute_id == m700_struct.NOM_ATTR_ID_MODEL:
             data_obj = self.decoding(m700_struct.U16, data_array)
-            #ret_dict[' InvokeID'] = data_obj['obj'].data
-            # SystemModel
+            ret_dict['Attribute'] = 'NOM_ATTR_ID_MODEL'
+
+            """
+            The manufacturer field is of variable length, hence the offset of model_number depends on the length of
+            manufacturer. Currently, the monitor uses 4 characters for the manufacturer and 6 characters for the
+            model_number (including the terminating ’\0’).
+            """
+
+            str_data = bytearray()
+
+            length = data_obj['obj'].data
+            data = data_obj['tail'][0: length]
+            tail = data_obj['tail'][length: len(data_obj['tail'])]
+            ret_dict['length1'] = length
+
+            index = 0
+            for _ in range(length):
+                str_data.append(data[index])
+                index += 1
+
+            ret_dict['manufacturer'] = str_data.decode('utf-8')
+
+            str_data = bytearray()
+            data_obj = self.decoding(m700_struct.U16, tail)
+            length = data_obj['obj'].data
+            data = data_obj['tail'][0: length]
+            ret_dict['length2'] = length
+
+            index = 0
+            for _ in range(length):
+                str_data.append(data[index])
+                index += 1
+
+            ret_dict['model_number'] = str_data.decode('utf-8')
+
 
         elif attribute_id == m700_struct.NOM_ATTR_NOM_VERS:
             data_obj = self.decoding(m700_struct.U32, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_NOM_VERS'
+
             ret_dict['NomenclatureVersion'] = data_obj['obj'].data
 
         elif attribute_id == m700_struct.NOM_ATTR_LOCALIZN:
-            data_obj = self.decoding(m700_struct.U32, data_array)
-            #ret_dict['NomenclatureVersion'] = data_obj['obj'].data
-            # SystemLocal
+            data_obj = self.decoding(m700_struct.SystemLocal, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_LOCALIZN'
+
+            ret_dict['text_catalog_revision'] = data_obj['obj'].text_catalog_revision
+            ret_dict['language'] = data_obj['obj'].language
+            ret_dict['format'] = data_obj['obj'].format
+
 
         elif attribute_id == m700_struct.NOM_ATTR_MODE_OP:
             data_obj = self.decoding(m700_struct.U16, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_MODE_OP'
+
+            # define OPMODE_UNSPEC 0x8000
+            # define MONITORING 0x4000
+            # define DEMO 0x2000
+            # define SERVICE 0x1000
+            # define OPMODE_STANDBY 0x0002
+            # define CONFIG 0x0001
             ret_dict['OperatingMode'] = data_obj['obj'].data
 
+
+        elif attribute_id == m700_struct.NOM_ATTR_AREA_APPL:
+            data_obj = self.decoding(m700_struct.U16, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_AREA_APPL'
+
+            # define AREA_UNSPEC 0
+            # define AREA_OPERATING_ROOM 1
+            # define AREA_INTENSIVE_CARE 2
+            # define AREA_NEONATAL_INTENSIVE_CARE 3
+            # define AREA_CARDIOLOGY_CARE 4
+            ret_dict['ApplicationArea'] = data_obj['obj'].data
+
+
+        elif attribute_id == m700_struct.NOM_ATTR_LINE_FREQ:
+            data_obj = self.decoding(m700_struct.U16, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_LINE_FREQ'
+
+            # define LINE_F_UNSPEC 0
+            # define LINE_F_50HZ 1
+            # define LINE_F_60HZ 2
+            ret_dict['LineFrequency'] = data_obj['obj'].data
+
+        elif attribute_id == m700_struct.NOM_ATTR_ALTITUDE:
+            data_obj = self.decoding(m700_struct.I16, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_ALTITUDE'
+
+            ret_dict['Altitude'] = data_obj['obj'].data
+
+        elif attribute_id == m700_struct.NOM_ATTR_MDS_GEN_INFO:
+            data_obj = self.decoding(m700_struct.MdsGenSystemInfo, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_MDS_GEN_INFO'
+
+            ret_dict['count'] = data_obj['obj'].count
+            ret_dict['length'] = data_obj['obj'].length
+            tail = data_obj['tail']
+
+            #for _ in range(data_obj['obj'].count):
+            #    data_obj = self.decoding(m700_struct.MdsGenSystemInfoEntry, data_array)
+#
+#
+#
+            #    data = data_obj['tail'][0: ]
+            #    pass
+
+            # MdsGenSystemInfo
+
+
+
+        elif attribute_id == m700_struct.NOM_ATTR_VMS_MDS_STAT:
+            data_obj = self.decoding(m700_struct.I16, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_VMS_MDS_STAT'
+
+            # define DISCONNECTED 0
+            # define UNASSOCIATED 1
+            # define OPERATING 6
+            ret_dict['MDSStatus'] = data_obj['obj'].data
+
+        elif attribute_id == m700_struct.NOM_ATTR_ID_BED_LABEL:
+            data_obj = self.decoding(m700_struct.I16, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_ID_BED_LABEL'
+
+            '''
+                String
+                The Bed Label can be entered in the Admit/Discharge dialog. It uses 16 bit unicode character
+                encoding. Currently, the Bed Label is 17 characters (including terminating ’\0’). If the actual label is
+                shorter, the string is filled with ’\0’ characters.
+            '''
+            ret_dict['LEN'] = len(data_obj['tail'])
+            #ret_dict['data'] = data_obj['tail']
+            ret_dict['BedLabel'] = data_obj['tail'].decode('utf-8')
+            #bytearray_temp = str_data.decode('utf-8')
+
+
+
+
+        elif attribute_id == m700_struct.NOM_ATTR_TIME_ABS:
+            data_obj = self.decoding(m700_struct.AbsoluteTime, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_TIME_ABS'
+
+            ret_dict['century'] = data_obj['obj'].century
+            ret_dict['year'] = data_obj['obj'].year
+            ret_dict['month'] = data_obj['obj'].month
+            ret_dict['day'] = data_obj['obj'].day
+            ret_dict['hour'] = data_obj['obj'].hour
+            ret_dict['minute'] = data_obj['obj'].minute
+            ret_dict['second'] = data_obj['obj'].second
+            ret_dict['sec_fractions'] = data_obj['obj'].sec_fractions
+
+        elif attribute_id == m700_struct.NOM_ATTR_TIME_REL:
+            data_obj = self.decoding(m700_struct.RelativeTime, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_TIME_REL'
+
+            ret_dict['RelativeTime'] = data_obj['obj'].RelativeTime
+
+
+        elif attribute_id == m700_struct.NOM_ATTR_SYS_SPECN:
+            data_obj = self.decoding(m700_struct.SystemSpec, data_array)
+            ret_dict['Attribute'] = 'NOM_ATTR_SYS_SPECN'
+            ret_dict['count'] = data_obj['obj'].count
+            ret_dict['length'] = data_obj['obj'].length
+
+
+
+            #ret_dict['RelativeTime'] = data_obj['obj'].RelativeTime
+            # SystemSpec
 
         return ret_dict
 
@@ -522,7 +682,7 @@ index = 0
 
 file_print = open("file_print.txt", "w")
 
-for data in data_monitor.datas3:
+for data in data_monitor.datas5:
     # for data in data_computer.datas1:
 
     res = rcv_data_restore.input_rcv_data(data)
@@ -544,3 +704,7 @@ for data in data_monitor.datas3:
     index += 1
 
 file_print.close()
+
+
+
+
