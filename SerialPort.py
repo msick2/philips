@@ -5,6 +5,7 @@ import serial  # pip install pyserial
 import rcv_data_restore
 import receiver
 
+
 class SerialPort:
 
     def __init__(self, port, baud, rcv_callback, send_thread):
@@ -54,49 +55,37 @@ class SerialPort:
 
         return rcvArray.decode('utf-8')
 
-
-
-
     # 데이터를 수신받아 한 패킷이 완성되면 처리 한다.
     def thread_rcv(self):
         rcv_enable = False
         count = 0
-        rcv_data_ddd = bytearray()
+        rcv_data_array = bytearray()
+        c_parser = receiver.Parser()
 
         while True:
             if self.cSerialPort.inWaiting() != 0:  # 버퍼가 비어있지 않으면
-
                 rcv_byte = self.cSerialPort.read(1)  # 버퍼에서 1바이트를 가져온다.
 
                 if not rcv_enable:  # 수신 대기중이면
-
                     if rcv_byte == bytes(b'\xc0'):  # 수신 받은 문자가 시작문자 이면
-
-                        rcv_data_ddd.append(rcv_byte[0])
+                        rcv_data_array.append(rcv_byte[0])
                         rcv_enable = True  # 수신 상태로 전환
 
                 else:  # 수신 중이면
-                    rcv_data_ddd.append(rcv_byte[0])
+                    rcv_data_array.append(rcv_byte[0])
 
                     if rcv_byte == bytes(b'\xc1'):  # 현재 문자가 종료뮨자 인지 확인
-                        # 맞다면 패킷이 완료 된 것이므로 데이터를 처리 한다.
-                        # ---------------------------------------------------------------------------------------------------------------------
-                        #print(f"[{count:03}]RCV from Equip: {rcv_data_ddd}")  # line이 수신받은 데이터 이다.
-
-                        cParser = receiver.Parser()
-                        res = rcv_data_restore.input_rcv_data(rcv_data_ddd)
+                        # 맞다면 패킷이 완료 된 것이므로 데이터를 처리 한다. ----------------------------------------------------
+                        res = rcv_data_restore.input_rcv_data(rcv_data_array)
 
                         if res[0]:
-                            data_dict = cParser.input_data(res[1]) # 패킷을 분석하여 dict로 출력을 한다. 이것을 적절히 사용하면 된다.
-                            #print(json.dumps(data_dict))
+                            data_dict = c_parser.input_data(res[1])  # 패킷을 분석하여 dict로 출력을 한다. 이것을 적절히 사용하면 된다.
                             self.rcv_callback(data_dict)
 
                         else:
                             print("PACKET ERROR")
-
-                        # file.writelines(f"{line},")
-                        # ---------------------------------------------------------------------------------------------------------------------
-                        rcv_data_ddd = bytearray()
+                        # ----------------------------------------------------------------------------------------------
+                        rcv_data_array = bytearray()
                         count += 1
 
                         rcv_enable = False  # 수신 대기 상태로 전환
@@ -105,11 +94,9 @@ class SerialPort:
                 time.sleep(0.005)  # 버퍼가 비어있으면 슬립을 주어 스레드에 유휴 시간을 준다.
 
 
-
 """
 cSerialPort = SerialPort("COM7", 115200)
 
 cSerialPort.threading()
 
 """
-
