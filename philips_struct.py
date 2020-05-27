@@ -990,7 +990,54 @@ class AssocReqSessionHeader(BigEndianStructure):
     _pack_ = 1
     _fields_ = [
         ("SessionHead", c_uint8),
+        # define CN_SPDU_SI 0x0D
+        # define AC_SPDU_SI 0x0E
+        # define RF_SPDU_SI 0x0C
+        # define FN_SPDU_SI 0x09
+        # define DN_SPDU_SI 0x0A
+        # define AB_SPDU_SI 0x19
+
         ("length", c_uint8),
+    ]
+
+
+class AssocReqSessionData(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("d00", c_uint8),
+        ("d01", c_uint8),
+        ("d02", c_uint8),
+        ("d03", c_uint8),
+        ("d04", c_uint8),
+        ("d05", c_uint8),
+        ("d06", c_uint8),
+        ("d07", c_uint8),
+        ("d08", c_uint8),
+        ("d09", c_uint8),
+        ("d10", c_uint8),
+        ("d11", c_uint8),
+        ("d12", c_uint8),
+        ("d13", c_uint8),
+    ]
+
+
+class AssocReqPresentationHeader(BigEndianStructure):
+    _pack_ = 1
+    _fields_ = [
+        ("d00", c_uint8),
+        ("d01", c_uint8),
+        ("d02", c_uint8),
+        ("d03", c_uint8),
+        ("d04", c_uint8),
+        ("d05", c_uint8),
+        ("d06", c_uint8),
+        ("d07", c_uint8),
+        ("d08", c_uint8),
+        ("d09", c_uint8),
+        ("d10", c_uint8),
+        ("d11", c_uint8),
+        ("d12", c_uint8),
+        ("d13", c_uint8),
     ]
 
 

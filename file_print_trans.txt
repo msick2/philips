@@ -1,0 +1,1 @@
+{"FrameHdr": {"protocol_id": 17, "msg_type": 1, "length": 238}, "AssocReqSessionHeader": {"SessionHead": 13, "length": 236}}

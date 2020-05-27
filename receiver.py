@@ -632,7 +632,7 @@ class Parser:
 
 
 
-
+"""
 
 cParser = Parser()
 
@@ -669,6 +669,7 @@ for data in data_monitor.datas4:
 
 file_print.close()
 
+"""
 
 
 

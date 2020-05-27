@@ -1,4 +1,4 @@
-import crcmod.predefined
+import crcmod.predefined # pip install crcmod
 
 calc_crc = crcmod.mkCrcFun(0x11021, rev=True, initCrc=0xffff)
 

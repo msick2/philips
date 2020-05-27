@@ -3,7 +3,7 @@ from ctypes import BigEndianStructure, Structure, c_int8, c_int16, c_int32, c_ui
 
 import m700_constants
 import m700_define
-import m700_Label_Mapping_Table
+#import m700_Label_Mapping_Table
 
 # = Constant ===========================================================================================================
 

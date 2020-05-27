@@ -46,6 +46,8 @@ import time
 
 import SerialPort
 
+# 설정 저장을 위한 JSON을 만드는 함수.
+# 설정 파일이 다 만들어졌다면 호출 할 필요가 없다.
 def makeJsonInit():
     file_print = open("setting.json", "w")
 
@@ -55,7 +57,7 @@ def makeJsonInit():
     text_dict["KAFKA"]["PORT"] = 12345
 
     text_dict["SERIAL"] = dict()
-    text_dict["SERIAL"]["PORT"] = "COM3"
+    text_dict["SERIAL"]["PORT"] = "COM7"
     text_dict["SERIAL"]["BAUD"] = 115200
 
     text_dict["MON_VALUE"] = dict()
@@ -66,54 +68,23 @@ def makeJsonInit():
 
     file_print.write(f"{json.dumps(text_dict)}\n")
 
-
+# 설정파일 로딩 할 때 사용
 def json_loading(filename):
     json_data = open(filename).read()
     ret_dict = json.loads(json_data)
     return ret_dict
 
 
-def rcvThread():
-    line = []
-    rcvEnable = False
-    rcvCount = 0
-
-    while True:
-
-        if self.cSerialPort.inWaiting() != 0:  # 버퍼가 비어있지 않으면
-
-            n8Rcv = self.cSerialPort.read(1)  # 버퍼에서 1바이트를 가져온다.
-
-            if not rcvEnable:  # 수신 대기중이면
-
-                if n8Rcv == bytes(b'$'):  # 수신 받은 문자가 { 이면
-                    line.append(n8Rcv)  # 수신 받은 문자 저장
-                    rcvEnable = True  # 수신 상태로 전환
-                    rcvCount = 0
-            else:  # 수신 중이면
-                line.append(n8Rcv)  # 수신 받은 문자 저장
-
-                rcvCount += 1
-
-                if rcvCount == 16:  # 16번째 바이트 인지
-                    # 맞다면 패킷이 완료 된 것이므로 데이터를 처리 한다.
-                    # dataLine = self.convertUtf8(line)
-                    # dictRcv = self.convertJson(dataLine)
-
-                    # ---------------------------------------------------------------------------------------------------------------------
-                    # print (line)
-
-                    self.processWeather(line)
-
-                    # ---------------------------------------------------------------------------------------------------------------------
-                    del line[:]  # 데이터 저장 리스트 삭제
-                    rcvEnable = False  # 수신 대기 상태로 전환
-
-        else:
-            time.sleep(0.005)  # 버퍼가 비어있으면 슬립을 주어 스레드에 유휴 시간을 준다.
+# 시리얼포트로 한 패킷이 수신 되면 해당 패킷을 담은 데이터와 함께 이 함수가 호출된다.
+# 수신받은 데이터를 가공하여 카프카쪽으로 전송하게 된다.
+# 현재는 수신 받은 데이터를 출력만 함.
+# 이 부분을 가공 하는 부분이 receiver.py 이며 관련 클래스 및 상수는 philips_struct.py, philips_constants.py에 정의되어 있다.
+def rcv_callback(dict_data):
+    print(dict_data)
 
 
-def sndThread():
+# 세션 유지를 위한 데이터를 전송한다. 이 부분이 완성 되면 독자적으로 구동이 가능해진다.
+def send_thread():
     while (True):
         print("sndThread")
         time.sleep(1)
@@ -121,17 +92,20 @@ def sndThread():
 
 def main():
     # todo : 기본설정파일 로딩 (JSON 텍스트 파일 형식)
-    makeJsonInit()
+    makeJsonInit() # 설정 파일을 새로 만들 때 만 호출한다.
     dict_setting = json_loading("setting.json")
+
     print(dict_setting)
 
     # todo : 시리얼 통신 스레드를 연다.
-    cSerialPort = SerialPort.SerialPort(dict_setting["SERIAL"]["PORT"], dict_setting["SERIAL"]["BAUD"], rcvThread, sndThread)
-    cSerialPort.threading()
+    c_serial_port = SerialPort.SerialPort(dict_setting["SERIAL"]["PORT"], dict_setting["SERIAL"]["BAUD"], rcv_callback, send_thread)
+    c_serial_port.threading()
+
 
     while (True):
-        print("main")
+        print("main sleep")
         time.sleep(1)
+
 
 if __name__ == "__main__":
     main()
